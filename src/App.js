@@ -1,5 +1,6 @@
 import React from 'react';
 import Proptypes from "prop-types";
+import axios from "axios";
 
 class App extends React.Component {
 
@@ -8,10 +9,12 @@ class App extends React.Component {
     movies: []
   };
 
+  getMovies = async () => {
+    const movies = await axios.get("https://yts.mx/api/v2/list_movies.json");
+  }
+
   componentDidMount() {
-    setTimeout(() => {
-      this.setState({isLoading: false});
-    }, 5000);
+    const movies = this.getMovies();
   }
 
   render() {
@@ -25,8 +28,3 @@ class App extends React.Component {
 }
 
 export default App;
-
-// mounting
-// updateing
-// unmounting
-
